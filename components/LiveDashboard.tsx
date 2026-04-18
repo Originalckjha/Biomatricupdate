@@ -40,7 +40,7 @@ function getCurrentlyInside(records: AttendanceRecord[]): number {
       if (!last.has(r.employeeId) && (r.punchType === 'IN' || r.punchType === 'OUT'))
         last.set(r.employeeId, r.punchType);
     });
-  return [...last.values()].filter(t => t === 'IN').length;
+  return Array.from(last.values()).filter(t => t === 'IN').length;
 }
 
 // ── UI primitives ──────────────────────────────────────────────────────
