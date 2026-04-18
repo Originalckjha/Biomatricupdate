@@ -6,6 +6,7 @@ import {
   FlaskConical, Download, Volume2, VolumeX, X, HelpCircle,
   CheckCircle2, Clock, AlertTriangle,
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { formatDistanceToNow, format } from 'date-fns';
 import clsx from 'clsx';
 import type { AttendanceRecord, DashboardStats, Config, PunchType } from '@/lib/types';
@@ -269,6 +270,7 @@ function WaitingBanner({
 // ── Main Dashboard ─────────────────────────────────────────────────────
 
 export default function LiveDashboard() {
+  const router = useRouter();
   const [records, setRecords] = useState<AttendanceRecord[]>([]);
   const [stats, setStats] = useState<DashboardStats>({ total: 0, in: 0, out: 0 });
   const [config, setConfig] = useState<Config>(DEFAULT_CONFIG);
@@ -396,6 +398,11 @@ export default function LiveDashboard() {
     setRecords([]); setStats({ total: 0, in: 0, out: 0 }); setToasts([]);
   };
 
+  const logout = async () => {
+    await fetch('/api/auth', { method: 'DELETE' });
+    router.push('/login');
+  };
+
   const exportCSV = () => {
     const header = 'Employee ID,Employee Name,Punch Type,Time,Date,Device\n';
     const rows = records.map(r => {
@@ -475,6 +482,13 @@ export default function LiveDashboard() {
             >
               <Settings size={15} />
               <span className="hidden sm:inline">Settings</span>
+            </button>
+            <button
+              onClick={logout}
+              title="Sign out"
+              className="p-2 text-gray-500 hover:text-red-400 hover:bg-gray-800 rounded-lg transition-colors"
+            >
+              <LogOut size={17} />
             </button>
           </div>
         </div>
