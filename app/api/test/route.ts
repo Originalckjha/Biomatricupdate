@@ -3,12 +3,12 @@ import { addRecord, addEmployee } from '@/lib/store';
 import type { PunchType } from '@/lib/types';
 
 const DEMO_EMPLOYEES = [
-  { id: '001', name: 'Ahmed Khan', department: 'Engineering' },
-  { id: '002', name: 'Sarah Ahmed', department: 'HR' },
-  { id: '003', name: 'Muhammad Ali', department: 'Sales' },
-  { id: '004', name: 'Fatima Sheikh', department: 'Finance' },
-  { id: '005', name: 'Omar Hassan', department: 'IT' },
-  { id: '006', name: 'Ayesha Malik', department: 'Operations' },
+  { id: '001', name: 'James Carter',   department: 'Engineering' },
+  { id: '002', name: 'Emily Johnson',  department: 'HR' },
+  { id: '003', name: 'David Smith',    department: 'Sales' },
+  { id: '004', name: 'Laura Williams', department: 'Finance' },
+  { id: '005', name: 'Robert Brown',   department: 'IT' },
+  { id: '006', name: 'Susan Taylor',   department: 'Operations' },
 ];
 
 export async function POST() {
