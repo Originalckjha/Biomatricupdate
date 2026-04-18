@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getRecords, getStats, getLastUpdated, addRecord, addEmployee } from '@/lib/store';
+import { getRecords, getStats, getLastUpdated, addRecord, addEmployee, clearStore } from '@/lib/store';
 
 export async function GET(request: NextRequest) {
   const since = request.nextUrl.searchParams.get('since');
@@ -31,4 +31,10 @@ export async function POST(request: NextRequest) {
   } catch {
     return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
   }
+}
+
+// Clear all records from memory
+export async function DELETE() {
+  clearStore();
+  return NextResponse.json({ success: true });
 }

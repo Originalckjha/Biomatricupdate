@@ -60,3 +60,9 @@ export function getStats(): DashboardStats {
 export function getLastUpdated(): number {
   return getStore().lastUpdated;
 }
+
+export function clearStore(): void {
+  const store = getStore();
+  store.records = [];
+  store.lastUpdated = Date.now();
+}
